@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="QuantuxTradeLogWPF.ImagePanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:local="clr-namespace:QuantuxTradeLogWPF"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Width="179">
+    <UserControl.Resources>
+
+        <local:ColorToStringConverter x:Key="colorConv" />
+        <local:objectToImageSourceConverter x:Key="imgToSourceConv"/>
+        <ControlTemplate x:Key="ImageshowTempalate" 
+                         TargetType="ContentControl">
+            <DockPanel LastChildFill="True" >
+                <Image Height="20" Width="20"
+                       DockPanel.Dock="Top"
+                       VerticalAlignment="Top" 
+                       HorizontalAlignment="Left"/>
+                
+                <Label Background="Blue" 
+                       DockPanel.Dock="Bottom"/>
+                <RichTextBox  Background="White" 
+                              Foreground="{Binding Path=TextForeColor, 
+                                         RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, 
+                                         Converter={StaticResource colorConv}}">
+                    <FlowDocument>
+                        <Paragraph>
+                            <Run Text="{Binding Path=TextBoxContent, 
+                                         RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"></Run>
+                        </Paragraph>
+                    </FlowDocument>
+
+                </RichTextBox>
+               
+            </DockPanel>
+        </ControlTemplate>
+    </UserControl.Resources>
+
+    <ContentControl Template="{StaticResource ImageshowTempalate}" Name="ImageshowLayout"/>
+</UserControl>
