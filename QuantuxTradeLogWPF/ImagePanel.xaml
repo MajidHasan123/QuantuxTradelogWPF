@@ -4,25 +4,52 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:local="clr-namespace:QuantuxTradeLogWPF"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" Width="179">
+             mc:Ignorable="d">
     <UserControl.Resources>
 
         <local:ColorToStringConverter x:Key="colorConv" />
         <local:objectToImageSourceConverter x:Key="imgToSourceConv"/>
+        <local:VisibilityConverter x:Key="visiblityConv"/>
         <ControlTemplate x:Key="ImageshowTempalate" 
                          TargetType="ContentControl">
             <DockPanel LastChildFill="True" >
-                <Image Height="20" Width="20"
-                       DockPanel.Dock="Top"
-                       VerticalAlignment="Top" 
-                       HorizontalAlignment="Left"/>
+                <DockPanel DockPanel.Dock="Top" 
+                           LastChildFill="True"
+                           Background="Black"
+                           Height="20" >
+
+                    <Image  Source="Images/CameraIcon.PNG" VerticalAlignment="Top"
+                            Margin="0 2 0 0"
+                            Width="20"
+                            DockPanel.Dock="Left"></Image>
+                    <Label Background="Yellow"  Width="20" DockPanel.Dock="Right" ></Label>
+                    <Label Background="black" 
+                           Height="20" 
+                           FontSize="10"
+                           Padding="0"
+                           Content="Forktrader" 
+                           Foreground="White"></Label>
+                </DockPanel>
+                
+                
+                <Image DockPanel.Dock="Top"
+                       Visibility="{Binding Path=ImageVisibility, 
+                                         RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, 
+                                         Converter={StaticResource visiblityConv}}"
+                                              Source="Images/CameraIcon.PNG"/>
                 
                 <Label Background="Blue" 
                        DockPanel.Dock="Bottom"/>
                 <RichTextBox  Background="White" 
+                              Visibility="{Binding Path=TextBoxVisibility, 
+                                         RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, 
+                                         Converter={StaticResource visiblityConv}}"
+                                 
                               Foreground="{Binding Path=TextForeColor, 
                                          RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, 
                                          Converter={StaticResource colorConv}}">
+                    
+                    
                     <FlowDocument>
                         <Paragraph>
                             <Run Text="{Binding Path=TextBoxContent, 
