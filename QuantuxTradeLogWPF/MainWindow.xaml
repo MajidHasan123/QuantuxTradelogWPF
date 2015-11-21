@@ -245,7 +245,10 @@
                     <RichTextBox Height="84" ></RichTextBox>
                     <Button Content="Submit" Width="50" Margin="0 10 0 0"/>
                     <StackPanel Height="239">
-                        <local:ImagePanel TextBoxContent="Comment" Height="140" Margin="0,0,87,0" />
+                        <local:ImagePanel TextBoxContent="Comment" 
+                                          Height="161" 
+                                          Width="155" 
+                                          HorizontalAlignment="Left" />
                     </StackPanel>
                 </StackPanel>
             </TabItem>

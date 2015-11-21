@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace QuantuxTradeLogWPF
 {
@@ -43,7 +46,11 @@ namespace QuantuxTradeLogWPF
         public ImagePanel()
         {
             InitializeComponent();
+            
         }
+      
+       
+
 
         static ImagePanel() 
         {
@@ -96,6 +103,7 @@ namespace QuantuxTradeLogWPF
    
         }
 
+       
 
         public Color TextForeColor
         {
@@ -214,5 +222,33 @@ namespace QuantuxTradeLogWPF
                 return false;
         }
     }
+
+    public class Ticker : INotifyPropertyChanged
+    {
+        public Ticker()
+        {
+            Timer timer = new Timer();
+            timer.Interval = 1000; // 1 second updates
+            timer.Elapsed += timer_Elapsed;
+            timer.Start();
+        }
+
+        public DateTime Now
+        {
+            get { return DateTime.Now; }
+        }
+
+        void timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs("Now"));
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+    }
 }
+
+
+
+
 
