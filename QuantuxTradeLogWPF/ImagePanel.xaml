@@ -24,7 +24,7 @@
                             Margin="0 2 0 0"
                             Width="20"
                             DockPanel.Dock="Left"></Image>
-                    <Label  Width="84"
+                    <Label  Width="85"
                            FontSize="8"
                            Background="#004080"
                            Foreground="#00C8FF"

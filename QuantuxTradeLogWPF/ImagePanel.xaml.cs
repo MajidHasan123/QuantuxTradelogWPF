@@ -24,7 +24,6 @@ namespace QuantuxTradeLogWPF
     public partial class ImagePanel : UserControl
     {
 
-
         public static DependencyProperty TextForeColorProperty;
         public static DependencyProperty LabelBackgroundProperty;
 
@@ -40,17 +39,11 @@ namespace QuantuxTradeLogWPF
         public static DependencyProperty TextBoxWidthProperty;
         public static DependencyProperty TextBoxVisibilityProperty;
 
-      
-        
-
         public ImagePanel()
         {
             InitializeComponent();
             
         }
-      
-       
-
 
         static ImagePanel() 
         {
